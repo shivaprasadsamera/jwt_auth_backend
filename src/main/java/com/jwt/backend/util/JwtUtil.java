@@ -17,7 +17,7 @@ public class JwtUtil {
     private static final String SECRET_KEY = "jwt_authentication";
     private static final int TOKEN_VALIDITY = 3600 * 5;
 
-    public String getUserNameFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
@@ -31,7 +31,7 @@ public class JwtUtil {
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
-        String userName = getUserNameFromToken(token);
+        String userName = getUsernameFromToken(token);
         return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
